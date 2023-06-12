@@ -9,6 +9,7 @@ int main()
     
     Menus men1;
     men1.printMenu();
+    men1.userMenuChoice();
     
 
 

@@ -8,8 +8,9 @@ struct Menus {
 	std::vector<std::string> menusOptions{ "What are you looking for?"
 , "List all items", "List all items as graph", "Exit" };
 
-	int userMenuChoice;
+	int userMenuInput;
 	int menuSize = menusOptions.size();
 
 	void printMenu();
+	void userMenuChoice();
 };
