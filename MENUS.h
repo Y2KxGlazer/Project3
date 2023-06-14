@@ -13,4 +13,9 @@ struct Menus {
 
 	void printMenu();
 	void userMenuChoice();
+
+
+	// userMenuInput -> if statements
+
+	// read file from start
 };
