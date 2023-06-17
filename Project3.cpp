@@ -14,18 +14,77 @@ void writeFile(const std::map<std::string, int>& map);
 
 int main()
 {
-    std::map<std::string, int> foodItems;
+
+    auto foodWithFreq = createMapFromFile();
+    
+    bool isRunning = true;
 
 
 
     Menus men1;
     men1.printMenu();
-    men1.userMenuChoice();
-    
-    
     writeFile(createMapFromFile());
 
-    std::cout << "lmao" << std::endl;
+    do {
+        men1.userMenuChoice();
+        std::string ingChoice;
+
+        // This is the quantity/frequency of item
+        if (men1.userMenuInput == 1) {
+            system("cls");
+            const auto mapEnd = foodWithFreq.end();
+            
+            std::cout << "Enter ingredient to find.\n";
+            std::cin >> ingChoice;
+            ingChoice[0] = std::toupper(ingChoice[0]);
+            auto f = foodWithFreq.find(ingChoice);
+
+            if (f != mapEnd) {
+
+                std::cout << f->first << " Frequencey: " << f->second << std::endl;
+            }
+            else {
+                std::cout << "Item not found!\n";
+            }
+        }
+
+        // This prints the entire map
+        else if (men1.userMenuInput == 2) {
+            for (const auto& pair : foodWithFreq) {
+                std::cout << pair.first << ": " << pair.second << std::endl;
+            }
+
+        }
+
+        // This is the histogram
+        else if (men1.userMenuInput == 3) {
+            auto f = foodWithFreq;
+            for ( auto itMap = f.begin(); itMap != f.end(); ++itMap) {
+                std::cout << itMap->first << ": ";
+                for (int i = 0; i < itMap->second; i++) {
+                    std::cout << '*';
+                }
+                std::cout << "\n";
+            }
+        }
+
+
+        else if (men1.userMenuInput == 4) {
+            isRunning = false;
+        }
+        else { // Not possible to reach 
+            isRunning = false;
+            
+        }
+
+    } while (isRunning);
+
+    
+    
+    
+    
+
+   
     system("pause");
     return 0;
     
@@ -59,7 +118,7 @@ std::map<std::string, int> createMapFromFile() {
 
 // Writes map to the output
 void writeFile(const std::map<std::string, int>& map) {
-    std::ofstream outputFile("output.txt");
+    std::ofstream outputFile("frequency.dat");
     for (const auto& pair : map) {
         outputFile << pair.first << ": " << pair.second << std::endl;
     }
