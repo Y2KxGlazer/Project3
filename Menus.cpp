@@ -4,6 +4,7 @@
 
 
 
+// Prints the menu
 void Menus::printMenu() {
 	for (int i = 0; i < menuSize; i++) {
 		std::cout << i+1 << ". " << menusOptions[i] << std::endl;
@@ -11,7 +12,7 @@ void Menus::printMenu() {
 
 }
 
-
+// Prompts user for input
 void Menus::userMenuChoice() {
 	try {
 		std::cout << "Menu choice: ";
@@ -50,6 +51,71 @@ void Menus::userMenuChoice() {
 }
 
 
+
+// Definitions
+
+// This is the quantity/frequency of item
+void Menus::optionOne(){
+	
+	system("cls");
+	const auto mapEnd = foodData.end();
+
+	std::string ingChoice;
+	std::cout << "Enter ingredient to find.\n";
+	std::cin >> ingChoice;
+	ingChoice[0] = std::toupper(ingChoice[0]);
+	auto f = foodData.find(ingChoice);
+
+	if (f != mapEnd) {
+
+		std::cout << f->first << " Frequencey: " << f->second << std::endl;
+	}
+	else {
+		std::cout << "Item not found!\n";
+	}
+
+	}
+
+// This prints the entire map
+void Menus::optionTwo(){
+	for (const auto& pair : foodData) {
+		std::cout << pair.first << ": " << pair.second << std::endl;
+	}
+
+
+	}
+
+// This is the histogram
+void Menus::optionThree(){
+	auto f = foodData;
+	for (auto itMap = f.begin(); itMap != f.end(); ++itMap) {
+		std::cout << itMap->first << ": ";
+		for (int i = 0; i < itMap->second; i++) {
+			std::cout << '*';
+		}
+		std::cout << "\n";
+	}
+
+
+	}
+	
+// Exits the program
+void Menus::optionFour() {
+	runFlag = false;
+	
+
+}
+
+void Menus::initUserMenuChoice(int userMenuInput) {
+	(this->*functionList[userMenuInput - 1])(); // Jesust
+}
+
+Menus::Menus(FileManager& fm, bool &run) {
+	userMenuInput = 0;
+	runFlag = run;
+	foodData = fm.createMapFromFile();
+	
+}
 
 
 
