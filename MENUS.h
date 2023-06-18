@@ -22,6 +22,8 @@ struct Menus {
 	void printMenu();
 	void userMenuChoice();
 
+	void initUserMenuChoice(int userMenuInput);
+
 
 
 	void optionOne();
@@ -30,9 +32,8 @@ struct Menus {
 	void optionFour();
 
 	// If new function/menu option created add to vector below
-	std::vector<void (Menus::*)()> functionList; // List of function pointers
-	void initUserMenuChoice(int userMenuInput);
-	Menus(FileManager& fm, bool run);
+	std::vector<void (Menus::*)()> functionList{ &Menus::optionOne, &Menus::optionTwo, &Menus::optionThree, &Menus::optionFour }; // List of function pointers
+	Menus(FileManager& fm, bool &run);
 	
 
 

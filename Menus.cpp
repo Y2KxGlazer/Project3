@@ -107,15 +107,13 @@ void Menus::optionFour() {
 }
 
 void Menus::initUserMenuChoice(int userMenuInput) {
-	
-
+	(this->*functionList[userMenuInput - 1])(); // Jesust
 }
 
-Menus::Menus(FileManager& fm, bool run) {
+Menus::Menus(FileManager& fm, bool &run) {
 	userMenuInput = 0;
-	std::vector<void (Menus::*)()> functionList{ &Menus::optionOne, &Menus::optionTwo, &Menus::optionThree, &Menus::optionFour };
-	foodData = fm.createMapFromFile();
 	runFlag = run;
+	foodData = fm.createMapFromFile();
 	
 }
 
