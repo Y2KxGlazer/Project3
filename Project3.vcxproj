@@ -139,10 +139,12 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="FileManager.cpp" />
     <ClCompile Include="Menus.cpp" />
     <ClCompile Include="Project3.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="FILE_MANAGER.h" />
     <ClInclude Include="MENUS.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

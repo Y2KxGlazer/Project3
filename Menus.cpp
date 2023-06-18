@@ -10,6 +10,8 @@ void Menus::printMenu() {
 	}
 
 }
+
+
 void Menus::userMenuChoice() {
 	try {
 		std::cout << "Menu choice: ";
