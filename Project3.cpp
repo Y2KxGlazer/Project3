@@ -1,4 +1,3 @@
-// Stephon Banks
 // 6/12/23
 //
 
